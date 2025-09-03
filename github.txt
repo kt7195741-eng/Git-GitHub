@@ -1,0 +1,239 @@
+// Definitions
+
+Version control system (VCS) : tracking the versions of my file
+
+Types of (VCS) : 1- Local VCS (just in your computer) 
+                 2- Central VCS (like a server in a company) 
+                 3- Distrubuted VCS (clone a version from the server of the company and maybe from another employee .like Git/GitHup)
+
+Differences between Incremental version control and Git : 1- Incremental version control takes a snapshot for the difference only.
+                                                          2- Git take a snapshot for all the file 
+
+Working Directory/Tree : Folder (has just the file you're working in)
+
+Git Repository(repo) : Version Control in Working Directory (hidden) has all the versions of the file
+
+Plob : File but has Content and Metadata
+
+Tree : Folder but has Content and Metadata
+
+VCS should : 1- Tracking Everything
+             2- OS Independent (same file works in windows, linux, ..)
+             3- Unique ID (HASH, SHA-1 in linux) # Git get it after add Type,Size,Null #
+             4- Track History
+             5- Don't Change The Content
+
+Old Version controls has 2 Tree but Git has 3 Tree (1-WD (staging)-> 2-Staging Area"Index" (commit)-> 3-Repo)
+
+Importance of Index :   1- A place to check the file before sending it to repo
+                        2- One commit can change the file instead of millions modifies in WD,etc...
+
+File : I- Untracked in WD 
+      II- Tracked in Repo (1- Unmodified "you changed the file in WD from Repo" 2- Modified "same in WD and Repo")
+
+// Identifications
+
+For getting HASH : echo "Hello ,Git" | Git hash-object --stdin
+
+Configurations : git config --global #user, git config --system #system, git config #project
+
+To identify : git config --global user.name "Khaled Tarek"
+              git config --global user.email "kt7195741@gamil.com"
+
+To show identify : git config --list
+
+// Creation
+
+To creat a folder in WD : mkdir folderName
+
+To open a folder : cd b7/ (b7 for ex.)
+
+To return back : cd ..
+
+To creat a file with content in the folder : echo "Hello, Git" >> file.txt
+
+// Showing
+
+To show the content of the file : cat D:\myFiles\file.txt
+
+TO show the type of the HASH : git cat-file -t b7294828532b
+
+TO show the size of the Hash : git cat-file -s b7294828532b
+
+TO show the content of the Hash : git cat-file -p b7294828532b
+
+To show files : ls -all
+
+To show files in WD : ls
+
+To show files in Index : git ls-files (-s to show also sha)
+
+To show files in Repo : find .git/objects/ -type f
+
+// Operations and Undoing
+
+To creat Repo : git init file.txt -> Undoing -> git restore file.txt
+
+To show the state of the file : git status (-s to show also Modified or not)
+
+                    **Until now the WD and Repo are empty**
+
+To move from Untracked(WD) to Tracked(Index) : git add (file.txt / f* / *.txt / * / .) -> Undoing -> git restore --staged file.txt
+
+                    **Now the WD passed the file to Index and there's just a copy in Repo**
+
+To commit from (Index) to (Repo) : git commit -m "Initial commit" -> Undoing -> git commit --amend (To recommit the last commit)
+
+To write the message with commit in terminal (Another way) : git config --global core.editor "vim"
+
+                    **After commit there will be 3 objects in Repo : commit, tree, blob**
+
+To show the commit : git log file.txt
+
+To show all the commits : graph
+
+To show the commit (Another way) : git log --oneline file.txt -> Undoing -> git reflog (To show changing in Head)
+
+                    **M in red means the file in WD != Index != Repo**
+
+                    **M in green means the file in WD = Index != Repo**
+
+                    **During showing the content of commit's Hash : parent word point to the commit before the current commit**
+
+                    **(Head -> master) point that this commit's Hash in Repo is the same in WD**
+
+// Differences
+
+To show the difference between WD and Index : git diff file.txt
+
+To show the difference between Index and Repo : git diff --staged file.txt
+
+To show the difference between 2 commits : git diff cd32943b..2024892c
+
+To show all the content of the commit from the commit to the tree to the blob instead of using git cat-file -p b4238532b : git show b4238532b
+
+To delete repo : rm -rf .git/
+
+// HEAD
+
+                    **Head points to the commit that I see in Wd**
+
+                    **To return for an old version/commit : make the Head point to an old commit**
+
+two ways when to chang HEAD :   1- making it reflect directly in WD (It's hard decision)
+                                2- making it reflect firstly in the Index then do unstaging to reflect in WD
+
+To change the HEAD and reflect it directly in WD : git reset --hard HEAD-1 (1 commit back) -> Undoing -> git reset --hard HEAD@{1,..}
+
+To change the HEAD and making it reflect firstly in the Index then in WD : git reset HEAD-2 (2 commits back) -> Undoing -> git reset --hard HEAD@{1,..}
+
+// Tags
+
+To spicify a commit as a version : git tag -a v2.0 "Version 2.0 of the file"
+
+To show a spicific version : git show v2.0
+
+// Branching
+
+                    **branch is a chain of commits which point to each other**
+
+                    **to modify in master branch without change it directly, we creat another branch**
+
+To add a branch : git branch testing
+
+To delete a branch : git branch -d testing
+
+To switch to another branch : git switch testing
+
+                    **to commit in the new branch you've to switch first to that branch**
+
+To merge the new branch to master branch : git merge testing
+
+To add a new file in master and want to merge all branches in master and delete other branches : git branch --merged -> git branch -d testing
+
+To switch again to master branch : git switch master
+
+To show all the branches : git branch or graph
+
+// Remotes
+
+                              ********Elzero GitHub Course********
+
+
+                                    **Basics**
+
+Preparing a file : cd (FileName\)
+
+Creating a directory(folder) : mkdir
+
+Seeing the files in the directory : dir
+
+Showing the statue : git status
+
+Coping Repo from GitHub to my Working Directory : git clone (ht303920$#@#23)
+
+                                    **Adding and Unadding**
+
+Adding from Working Directory to Staging Area : git add (FileName)
+
+unadding from Staging Area to Working Directory : git reset head (FileName)
+
+                                    **Commiting**
+
+Commiting from Staging Area to Local Repo : git commit -m ""
+
+                                    **Pushing and Pulling**
+
+Knowing RemoteName : git remote -v
+
+Knowing BranchName : git branch
+
+Pushing from Local Repo to Remote Repo : git push Remote_repo_name Branch_name
+
+Taking the Remote Repo from GitHub to my device : git pull Remote_repo_name
+
+                                    **Configration [2 Methods: 1-Cl 2- Editor]**
+
+Showing all configrations : git config -l
+
+Getting config : git config --global user.email
+
+Deleating config : git config --global --unset user.email
+
+Setting config : git config --global user.email "kt7195741@gmail.com" /  git config --global --edit (you can change name, email, colors [color "status"]added = yellow,... , ...)
+
+                                    **Github Public Key**
+
+Creating Public Key : ssh-keygen -t rsa -b 4096 -C "kt7195741@gmail.com"
+
+                                    **Copying a Repo from your PC to Githup**
+
+                                    **Directory(folder)**
+
+Creating a directory(folder) : mkdir
+
+Deleating a directory(folder) :  Remove-Item -Recurse -Force .\(folder name) <- windows/ rmdir /s /q (folder name) <- Mac,Linux
+
+                                    **Processing with Repo**
+
+Initialization a Repo in a folder : git init 
+
+Creating a file in Repo : ni (file.name) <- windows/ touch (file.name) <- Mac,Linux
+
+Adding from Working Directory to Staging Area : git add (FileName)
+
+Commiting from Staging Area to Local Repo : git commit -m ""
+
+Adding your Local Repo to the Remote Repo : (from github copy this->)git remote add origin git@github.com:kt7195741-eng/A-program-with-C-style.git
+
+Pushing to Github : git push -u origin master (-u to take any ubdate from others before Pushing your repo)
+
+                                    **Notes**
+
+Wanting to change the commit -m "if there's a mistake here" before pushing it : git commit --amend -m "the right message"
+
+Wanting to change the commit -m "if there's a mistake here" after pushing it : git commit --amend -m "the right message"
+                                                                             : git push --force origin (branch_name)
+
+
+Wanting to delete a Repo you made by wrong : rmdir -Force -Recurse .git
