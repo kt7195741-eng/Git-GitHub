@@ -4,7 +4,7 @@ Version control system (VCS) : tracking the versions of my file
 
 Types of (VCS) : 1- Local VCS (just in your computer) 
                  2- Central VCS (like a server in a company) 
-                 3- Distrubuted VCS (clone a version from the server of the company and maybe from another employee .like Git/GitHup)
+                 3- Distributed VCS (clone a version from the server of the company and maybe from another employee .like Git/GitHup)
 
 Differences between Incremental version control and Git : 1- Incremental version control takes a snapshot for the difference only.
                                                           2- Git take a snapshot for all the file 
@@ -18,8 +18,8 @@ Plob : File but has Content and Metadata
 Tree : Folder but has Content and Metadata
 
 VCS should : 1- Tracking Everything
-             2- OS Independent (same file works in windows, linux, ..)
-             3- Unique ID (HASH, SHA-1 in linux) # Git get it after add Type,Size,Null #
+             2- OS Independent (same file works in windows, Linux, ..)
+             3- Unique ID (HASH, SHA-1 in Linux) # Git get it after add Type,Size,Null #
              4- Track History
              5- Don't Change The Content
 
@@ -44,13 +44,13 @@ To show identify : git config --list
 
 // Creation
 
-To creat a folder in WD : mkdir folderName
+To create a folder in WD : mkdir folderName
 
 To open a folder : cd b7/ (b7 for ex.)
 
 To return back : cd ..
 
-To creat a file with content in the folder : echo "Hello, Git" >> file.txt
+To create a file with content in the folder : echo "Hello, Git" >> file.txt
 
 // Showing
 
@@ -72,7 +72,7 @@ To show files in Repo : find .git/objects/ -type f
 
 // Operations and Undoing
 
-To creat Repo : git init file.txt -> Undoing -> git restore file.txt
+To create Repo : git init file.txt -> Undoing -> git restore file.txt
 
 To show the state of the file : git status (-s to show also Modified or not)
 
@@ -120,7 +120,7 @@ To delete repo : rm -rf .git/
 
                     **To return for an old version/commit : make the Head point to an old commit**
 
-two ways when to chang HEAD :   1- making it reflect directly in WD (It's hard decision)
+two ways when to change HEAD :   1- making it reflect directly in WD (It's hard decision)
                                 2- making it reflect firstly in the Index then do unstaging to reflect in WD
 
 To change the HEAD and reflect it directly in WD : git reset --hard HEAD-1 (1 commit back) -> Undoing -> git reset --hard HEAD@{1,..}
@@ -129,15 +129,15 @@ To change the HEAD and making it reflect firstly in the Index then in WD : git r
 
 // Tags
 
-To spicify a commit as a version : git tag -a v2.0 "Version 2.0 of the file"
+To specify a commit as a version : git tag -a v2.0 "Version 2.0 of the file"
 
-To show a spicific version : git show v2.0
+To show a specific version : git show v2.0
 
 // Branching
 
                     **branch is a chain of commits which point to each other**
 
-                    **to modify in master branch without change it directly, we creat another branch**
+                    **to modify in master branch without change it directly, we create another branch**
 
 To add a branch : git branch testing
 
@@ -162,7 +162,7 @@ To show all the branches : git branch or graph
 
                                     **Basics**
 
-Preparing a file : cd (FileName\)
+Preparing a file : cd (File name\)
 
 Creating a directory(folder) : mkdir
 
@@ -174,66 +174,66 @@ Coping Repo from GitHub to my Working Directory : git clone (ht303920$#@#23)
 
                                     **Adding and Unadding**
 
-Adding from Working Directory to Staging Area : git add (FileName)
+Adding from Working Directory to Staging Area : git add (File name)
 
-unadding from Staging Area to Working Directory : git reset head (FileName)
+unadding from Staging Area to Working Directory : git reset head (File name)
 
-                                    **Commiting**
+                                    **Committing**
 
-Commiting from Staging Area to Local Repo : git commit -m ""
+Committing from Staging Area to Local Repo : git commit -m ""
 
                                     **Pushing and Pulling**
 
-Knowing RemoteName : git remote -v
+Knowing Remote Name : git remote -v
 
-Knowing BranchName : git branch
+Knowing Branch Name : git branch
 
 Pushing from Local Repo to Remote Repo : git push Remote_repo_name Branch_name
 
 Taking the Remote Repo from GitHub to my device : git pull Remote_repo_name
 
-                                    **Configration [2 Methods: 1-Cl 2- Editor]**
+                                    **Configuration [2 Methods: 1-Cl 2- Editor]**
 
-Showing all configrations : git config -l
+Showing all configurations : git config -l
 
 Getting config : git config --global user.email
 
-Deleating config : git config --global --unset user.email
+Deleting config : git config --global --unset user.email
 
 Setting config : git config --global user.email "kt7195741@gmail.com" /  git config --global --edit (you can change name, email, colors [color "status"]added = yellow,... , ...)
 
-                                    **Github Public Key**
+                                    **GitHub Public Key**
 
 Creating Public Key : ssh-keygen -t rsa -b 4096 -C "kt7195741@gmail.com"
 
-                                    **Copying a Repo from your PC to Githup**
+                                    **Copying a Repo from your PC to GitHub**
 
                                     **Directory(folder)**
 
 Creating a directory(folder) : mkdir
 
-Deleating a directory(folder) :  Remove-Item -Recurse -Force .\(folder name) <- windows/ rmdir /s /q (folder name) <- Mac,Linux
+Deleting a directory(folder) :  Remove-Item -Recurse -Force .\(folder name) <- windows/ rmdir /s /q (folder name) <- Mac,Linux
 
                                     **Processing with Repo**
 
 Initialization a Repo in a folder : git init 
 
-Creating a file in Repo : ni (file.name) <- windows/ touch (file.name) <- Mac,Linux
+Creating a file in Repo : ni (file.name) <- windows/ touch (file.name) <- Mac, Linux
 
-Adding from Working Directory to Staging Area : git add (FileName)
+Adding from Working Directory to Staging Area : git add (Filename)
 
-Commiting from Staging Area to Local Repo : git commit -m ""
+Committing from Staging Area to Local Repo : git commit -m ""
 
-Adding your Local Repo to the Remote Repo : (from github copy this->)git remote add origin git@github.com:kt7195741-eng/A-program-with-C-style.git
+Adding your Local Repo to the Remote Repo : (from GitHub copy this->)git remote add origin git@github.com:kt7195741-eng/A-program-with-C-style.git
 
-Pushing to Github : git push -u origin master (-u to take any ubdate from others before Pushing your repo)
+Pushing to GitHub : git push -u origin master (-u to take any update from others before Pushing your repo)
 
                                     **Notes**
 
 Wanting to change the commit -m "if there's a mistake here" before pushing it : git commit --amend -m "the right message"
 
 Wanting to change the commit -m "if there's a mistake here" after pushing it : git commit --amend -m "the right message"
-                                                                             : git push --force origin (branch_name)
+                                                                             : git push --force origin (branch name)
 
 
 Wanting to delete a Repo you made by wrong : rmdir -Force -Recurse .git
